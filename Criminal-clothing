@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>CRIMINAL — Premium Underground Streetwear, Egypt</title>
+<meta name="description" content="Criminal Clothing Brand — Premium underground streetwear designed and crafted in Egypt. Shop the new drop.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: { ink:'#09090B', surface:'#18181B', surface2:'#232327', bone:'#FAFAFA', crimson:{DEFAULT:'#EF4444',dark:'#B91C1C',light:'#FCA5A5'}, go:'#22C55E' }, fontFamily: { display:['Anton','sans-serif'], body:['Space Grotesk','sans-serif'], mono:['JetBrains Mono','monospace'], arabic:['Cairo','sans-serif'] } } } }
+</script>
+<style>
+  :root{color-scheme:dark;} html{scroll-behavior:smooth;}
+  body{font-family:'Space Grotesk',sans-serif;background-color:#09090B;color:#FAFAFA;}
+  html[dir="rtl"] body{font-family:'Cairo',sans-serif;}
+  .grain{position:relative;}
+  .grain::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");mix-blend-mode:overlay;z-index:1;}
+  .tape-strip{height:14px;background:repeating-linear-gradient(-45deg,#EF4444,#EF4444 14px,#09090B 14px,#09090B 28px);}
+  .stamp{border:2px solid #EF4444;color:#EF4444;transform:rotate(-8deg);font-family:'JetBrains Mono',monospace;letter-spacing:.1em;}
+  .stitch-border{border:1px dashed rgba(250,250,250,.25);}
+  .thin-scroll::-webkit-scrollbar{width:4px;} .thin-scroll::-webkit-scrollbar-thumb{background:#EF4444;border-radius:4px;}
+  .size-btn.selected{background-color:#EF4444;color:#09090B;border-color:#EF4444;}
+  #cartOverlay{transition:opacity .3s ease;} #cartDrawer{transition:transform .35s cubic-bezier(.16,1,.3,1);}
+  .fade-up{animation:fadeUp .6s ease both;} @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;} .fade-up{animation:none;}}
+  [data-lang="ar"]{display:none;} html[dir="rtl"] [data-lang="en"]{display:none;} html[dir="rtl"] [data-lang="ar"]{display:inline;}
+</style>
+</head>
+<body class="bg-ink text-bone antialiased">
+
+<header class="fixed top-0 inset-x-0 z-40 bg-ink/90 backdrop-blur-md border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-2.5 select-none">
+      <img src="assets/01-criminal-clothing-brand-logo.jpg" alt="Criminal Clothing Brand logo" class="w-10 h-10 rounded-full object-cover border border-white/15">
+      <span class="font-display text-2xl tracking-wider text-bone hidden sm:inline">CRIMI<span class="text-crimson">NAL</span></span>
+    </a>
+    <nav class="hidden md:flex items-center gap-8 font-body text-sm uppercase tracking-widest text-zinc-300">
+      <a href="#drops" class="hover:text-crimson transition-colors"><span data-lang="en">Drops</span><span data-lang="ar">إصدارات</span></a>
+      <a href="#lookbook" class="hover:text-crimson transition-colors"><span data-lang="en">Lookbook</span><span data-lang="ar">لوك بوك</span></a>
+      <a href="#size-guide" class="hover:text-crimson transition-colors"><span data-lang="en">Size Guide</span><span data-lang="ar">جدول المقاسات</span></a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <button id="langToggle" onclick="toggleLang()" class="font-mono text-xs border border-white/20 rounded-full px-3 py-1.5 text-zinc-300 hover:border-crimson hover:text-crimson transition-colors"><span id="langToggleLabel">EN | ع</span></button>
+      <button onclick="toggleCart(true)" aria-label="Open cart" class="relative border border-white/20 rounded-full p-2.5 hover:border-crimson transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        <span id="cartBadge" class="absolute -top-1.5 -right-1.5 bg-crimson text-ink text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
+      </button>
+      <button id="mobileNavToggle" onclick="toggleMobileNav()" class="md:hidden border border-white/20 rounded-full p-2.5 hover:border-crimson transition-colors" aria-label="Open menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobileNav" class="md:hidden hidden border-t border-white/10 bg-ink px-4 py-4 flex flex-col gap-4 font-body text-sm uppercase tracking-widest text-zinc-300">
+    <a href="#drops" onclick="toggleMobileNav()" class="hover:text-crimson"><span data-lang="en">Drops</span><span data-lang="ar">إصدارات</span></a>
+    <a href="#lookbook" onclick="toggleMobileNav()" class="hover:text-crimson"><span data-lang="en">Lookbook</span><span data-lang="ar">لوك بوك</span></a>
+    <a href="#size-guide" onclick="toggleMobileNav()" class="hover:text-crimson"><span data-lang="en">Size Guide</span><span data-lang="ar">جدول المقاسات</span></a>
+  </div>
+</header>
+
+<section id="top" class="grain relative h-[100svh] min-h-[560px] flex flex-col items-center justify-center text-center px-6 pt-16 overflow-hidden bg-gradient-to-b from-surface via-ink to-ink">
+  <div class="absolute top-24 right-6 md:right-16 stamp px-3 py-1 text-[10px] rotate-[8deg] hidden sm:block">CASE NO. 001-EG</div>
+  <div class="absolute bottom-28 left-6 md:left-16 font-mono text-[10px] text-zinc-500 rotate-[-4deg] hidden sm:block tracking-widest">// EVIDENCE: DESIGNED IN CAIRO</div>
+  <p class="relative z-10 font-mono text-crimson text-xs md:text-sm tracking-[0.3em] uppercase mb-5 fade-up"><span data-lang="en">Est. Cairo — Underground Since Day One</span><span data-lang="ar">تأسست في القاهرة — أندرجراوند من اليوم الأول</span></p>
+  <h1 class="relative z-10 font-display text-5xl sm:text-6xl md:text-8xl leading-[0.95] tracking-wide uppercase text-bone fade-up" style="animation-delay:0.1s"><span data-lang="en">Rewrite<br>The Rules</span><span data-lang="ar" class="font-arabic">اكتب قوانينك<br>الخاصة</span></h1>
+  <p class="relative z-10 mt-6 max-w-md text-zinc-400 text-sm md:text-base font-body fade-up" style="animation-delay:0.2s"><span data-lang="en">Premium Underground Streetwear — Designed &amp; Crafted in Egypt.</span><span data-lang="ar">ملابس ستريت وير فاخرة — تصميم وصناعة مصرية.</span></p>
+  <a href="#drops" class="relative z-10 mt-9 inline-flex items-center gap-2 bg-crimson text-ink font-body font-bold uppercase tracking-widest text-sm px-8 py-4 rounded-sm hover:bg-crimson-dark hover:text-bone transition-colors fade-up" style="animation-delay:0.3s"><span data-lang="en">Explore New Drop</span><span data-lang="ar">استكشف الإصدار الجديد</span><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-zinc-500"><span class="font-mono text-[10px] tracking-widest uppercase">Scroll</span><div class="w-px h-8 bg-gradient-to-b from-crimson to-transparent"></div></div>
+</section>
+
+<div class="tape-strip"></div>
+
+<section id="drops" class="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-24">
+  <div class="flex items-end justify-between mb-10">
+    <div>
+      <p class="font-mono text-crimson text-xs tracking-[0.3em] uppercase mb-2"><span data-lang="en">Case Files 001 — 010</span><span data-lang="ar">الملفات 001 — 010</span></p>
+      <h2 class="font-display text-4xl md:text-6xl uppercase tracking-wide"><span data-lang="en">Featured Drops</span><span data-lang="ar">أحدث الإصدارات</span></h2>
+    </div>
+  </div>
+  <div class="grid grid-cols-2 gap-3 md:gap-6">
+
+    <article class="group bg-surface border border-white/10 rounded-md overflow-hidden hover:border-crimson/60 transition-colors" data-product-id="1">
+      <div class="relative aspect-square bg-zinc-950 overflow-hidden">
+        <img src="assets/02-calculated-graphic-tee-black-back-print.jpg" alt="Calculated Graphic Tee, black, back print" class="absolute inset-0 w-full h-full object-cover object-top group-hover:opacity-0 transition-opacity duration-500">
+        <img src="assets/03-calculated-graphic-tee-black-front.jpg" alt="Calculated Graphic Tee, black, front" class="absolute inset-0 w-full h-full object-cover object-top opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+        <span class="absolute top-2 left-2 stamp text-[9px] px-2 py-0.5 bg-ink/70"><span data-lang="en">EVIDENCE 001</span><span data-lang="ar">دليل 001</span></span>
+      </div>
+      <div class="p-3 md:p-5">
+        <h3 class="font-body font-semibold text-sm md:text-base leading-tight"><span data-lang="en">Calculated Graphic Tee — Black</span><span data-lang="ar">تيشيرت Calculated — أسود</span></h3>
+        <p class="font-mono text-crimson text-sm md:text-base mt-1">550 EGP</p>
+        <div class="flex gap-1.5 mt-3" data-size-group="1">
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(1,'S',this)">S</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(1,'M',this)">M</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(1,'L',this)">L</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(1,'XL',this)">XL</button>
+        </div>
+        <button onclick="addToCart(1)" class="mt-4 w-full bg-bone text-ink font-body font-bold uppercase text-xs tracking-widest py-2.5 rounded-sm hover:bg-crimson transition-colors"><span data-lang="en">Add to Cart</span><span data-lang="ar">أضف للسلة</span></button>
+      </div>
+    </article>
+
+    <article class="group bg-surface border border-white/10 rounded-md overflow-hidden hover:border-crimson/60 transition-colors" data-product-id="2">
+      <div class="relative aspect-square bg-zinc-100 overflow-hidden">
+        <img src="assets/04-calculated-graphic-tee-white-back-print.jpg" alt="Calculated Graphic Tee, white, back print" class="absolute inset-0 w-full h-full object-cover object-top group-hover:opacity-0 transition-opacity duration-500">
+        <img src="assets/05-calculated-graphic-tee-white-back-print-close-up.jpg" alt="Calculated Graphic Tee, white, back print close-up" class="absolute inset-0 w-full h-full object-cover object-top opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+        <span class="absolute top-2 left-2 stamp text-[9px] px-2 py-0.5 bg-ink/70"><span data-lang="en">EVIDENCE 002</span><span data-lang="ar">دليل 002</span></span>
+      </div>
+      <div class="p-3 md:p-5">
+        <h3 class="font-body font-semibold text-sm md:text-base leading-tight"><span data-lang="en">Calculated Graphic Tee — White</span><span data-lang="ar">تيشيرت Calculated — أبيض</span></h3>
+        <p class="font-mono text-crimson text-sm md:text-base mt-1">550 EGP</p>
+        <div class="flex gap-1.5 mt-3" data-size-group="2">
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(2,'S',this)">S</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(2,'M',this)">M</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(2,'L',this)">L</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(2,'XL',this)">XL</button>
+        </div>
+        <button onclick="addToCart(2)" class="mt-4 w-full bg-bone text-ink font-body font-bold uppercase text-xs tracking-widest py-2.5 rounded-sm hover:bg-crimson transition-colors"><span data-lang="en">Add to Cart</span><span data-lang="ar">أضف للسلة</span></button>
+      </div>
+    </article>
+
+    <article class="group bg-surface border border-white/10 rounded-md overflow-hidden hover:border-crimson/60 transition-colors" data-product-id="3">
+      <div class="relative aspect-square bg-zinc-100 overflow-hidden">
+        <img src="assets/06-calculated-wordmark-tee-white-front-print.jpg" alt="Calculated Wordmark Tee, white, front print" class="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+        <span class="absolute top-2 left-2 stamp text-[9px] px-2 py-0.5 bg-ink/70"><span data-lang="en">EVIDENCE 003</span><span data-lang="ar">دليل 003</span></span>
+      </div>
+      <div class="p-3 md:p-5">
+        <h3 class="font-body font-semibold text-sm md:text-base leading-tight"><span data-lang="en">Calculated Wordmark Tee — White</span><span data-lang="ar">تيشيرت Calculated Wordmark — أبيض</span></h3>
+        <p class="font-mono text-crimson text-sm md:text-base mt-1">590 EGP</p>
+        <div class="flex gap-1.5 mt-3" data-size-group="3">
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(3,'S',this)">S</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(3,'M',this)">M</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(3,'L',this)">L</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(3,'XL',this)">XL</button>
+        </div>
+        <button onclick="addToCart(3)" class="mt-4 w-full bg-bone text-ink font-body font-bold uppercase text-xs tracking-widest py-2.5 rounded-sm hover:bg-crimson transition-colors"><span data-lang="en">Add to Cart</span><span data-lang="ar">أضف للسلة</span></button>
+      </div>
+    </article>
+
+    <article class="group bg-surface border border-white/10 rounded-md overflow-hidden hover:border-crimson/60 transition-colors" data-product-id="4">
+      <div class="relative aspect-square bg-zinc-100 overflow-hidden">
+        <img src="assets/07-rebellion-graphic-tee-white-front-print.jpg" alt="Rebellion Graphic Tee, white, front print" class="absolute inset-0 w-full h-full object-cover object-top group-hover:opacity-0 transition-opacity duration-500">
+        <img src="assets/08-rebellion-graphic-tee-white-print-detail.jpg" alt="Rebellion Graphic Tee, white, print detail" class="absolute inset-0 w-full h-full object-cover object-top opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+        <span class="absolute top-2 left-2 stamp text-[9px] px-2 py-0.5 bg-ink/70"><span data-lang="en">EVIDENCE 004</span><span data-lang="ar">دليل 004</span></span>
+      </div>
+      <div class="p-3 md:p-5">
+        <h3 class="font-body font-semibold text-sm md:text-base leading-tight"><span data-lang="en">Rebellion Graphic Tee — White</span><span data-lang="ar">تيشيرت Rebellion — أبيض</span></h3>
+        <p class="font-mono text-crimson text-sm md:text-base mt-1">580 EGP</p>
+        <div class="flex gap-1.5 mt-3" data-size-group="4">
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(4,'S',this)">S</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(4,'M',this)">M</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(4,'L',this)">L</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(4,'XL',this)">XL</button>
+        </div>
+        <button onclick="addToCart(4)" class="mt-4 w-full bg-bone text-ink font-body font-bold uppercase text-xs tracking-widest py-2.5 rounded-sm hover:bg-crimson transition-colors"><span data-lang="en">Add to Cart</span><span data-lang="ar">أضف للسلة</span></button>
+      </div>
+    </article>
+
+    <article class="group bg-surface border border-white/10 rounded-md overflow-hidden hover:border-crimson/60 transition-colors" data-product-id="5">
+      <div class="relative aspect-square bg-zinc-800 overflow-hidden">
+        <img src="assets/09-rebellion-graphic-tee-blue-front-print.jpg" alt="Rebellion Graphic Tee, blue, front print" class="absolute inset-0 w-full h-full object-cover object-top group-hover:opacity-0 transition-opacity duration-500">
+        <img src="assets/10-rebellion-graphic-tee-blue-back-print.jpg" alt="Rebellion Graphic Tee, blue, back print" class="absolute inset-0 w-full h-full object-cover object-top opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+        <span class="absolute top-2 left-2 stamp text-[9px] px-2 py-0.5 bg-ink/70"><span data-lang="en">EVIDENCE 005</span><span data-lang="ar">دليل 005</span></span>
+      </div>
+      <div class="p-3 md:p-5">
+        <h3 class="font-body font-semibold text-sm md:text-base leading-tight"><span data-lang="en">Rebellion Graphic Tee — Blue</span><span data-lang="ar">تيشيرت Rebellion — أزرق</span></h3>
+        <p class="font-mono text-crimson text-sm md:text-base mt-1">580 EGP</p>
+        <div class="flex gap-1.5 mt-3" data-size-group="5">
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(5,'S',this)">S</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(5,'M',this)">M</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(5,'L',this)">L</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(5,'XL',this)">XL</button>
+        </div>
+        <button onclick="addToCart(5)" class="mt-4 w-full bg-bone text-ink font-body font-bold uppercase text-xs tracking-widest py-2.5 rounded-sm hover:bg-crimson transition-colors"><span data-lang="en">Add to Cart</span><span data-lang="ar">أضف للسلة</span></button>
+      </div>
+    </article>
+
+    <article class="group bg-surface border border-white/10 rounded-md overflow-hidden hover:border-crimson/60 transition-colors" data-product-id="6">
+      <div class="relative aspect-square bg-zinc-950 overflow-hidden">
+        <img src="assets/11-respect-tee-black-print-detail.jpg" alt="Respect Tee, black, print detail" class="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+        <span class="absolute top-2 left-2 stamp text-[9px] px-2 py-0.5 bg-ink/70"><span data-lang="en">EVIDENCE 006</span><span data-lang="ar">دليل 006</span></span>
+      </div>
+      <div class="p-3 md:p-5">
+        <h3 class="font-body font-semibold text-sm md:text-base leading-tight"><span data-lang="en">Respect Tee — Black</span><span data-lang="ar">تيشيرت Respect — أسود</span></h3>
+        <p class="font-mono text-crimson text-sm md:text-base mt-1">560 EGP</p>
+        <div class="flex gap-1.5 mt-3" data-size-group="6">
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(6,'S',this)">S</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(6,'M',this)">M</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(6,'L',this)">L</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(6,'XL',this)">XL</button>
+        </div>
+        <button onclick="addToCart(6)" class="mt-4 w-full bg-bone text-ink font-body font-bold uppercase text-xs tracking-widest py-2.5 rounded-sm hover:bg-crimson transition-colors"><span data-lang="en">Add to Cart</span><span data-lang="ar">أضف للسلة</span></button>
+      </div>
+    </article>
+
+    <article class="group bg-surface border border-white/10 rounded-md overflow-hidden hover:border-crimson/60 transition-colors" data-product-id="7">
+      <div class="relative aspect-square bg-zinc-100 overflow-hidden">
+        <img src="assets/12-respect-tee-white-print-detail.jpg" alt="Respect Tee, white, print detail" class="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+        <span class="absolute top-2 left-2 stamp text-[9px] px-2 py-0.5 bg-ink/70"><span data-lang="en">EVIDENCE 007</span><span data-lang="ar">دليل 007</span></span>
+      </div>
+      <div class="p-3 md:p-5">
+        <h3 class="font-body font-semibold text-sm md:text-base leading-tight"><span data-lang="en">Respect Tee — White</span><span data-lang="ar">تيشيرت Respect — أبيض</span></h3>
+        <p class="font-mono text-crimson text-sm md:text-base mt-1">560 EGP</p>
+        <div class="flex gap-1.5 mt-3" data-size-group="7">
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(7,'S',this)">S</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(7,'M',this)">M</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(7,'L',this)">L</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(7,'XL',this)">XL</button>
+        </div>
+        <button onclick="addToCart(7)" class="mt-4 w-full bg-bone text-ink font-body font-bold uppercase text-xs tracking-widest py-2.5 rounded-sm hover:bg-crimson transition-colors"><span data-lang="en">Add to Cart</span><span data-lang="ar">أضف للسلة</span></button>
+      </div>
+    </article>
+
+    <article class="group bg-surface border border-white/10 rounded-md overflow-hidden hover:border-crimson/60 transition-colors" data-product-id="8">
+      <div class="relative aspect-square bg-yellow-100 overflow-hidden">
+        <img src="assets/13-respect-tee-yellow-print-detail.jpg" alt="Respect Tee, yellow, print detail" class="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+        <span class="absolute top-2 left-2 stamp text-[9px] px-2 py-0.5 bg-ink/70"><span data-lang="en">EVIDENCE 008</span><span data-lang="ar">دليل 008</span></span>
+      </div>
+      <div class="p-3 md:p-5">
+        <h3 class="font-body font-semibold text-sm md:text-base leading-tight"><span data-lang="en">Respect Tee — Yellow</span><span data-lang="ar">تيشيرت Respect — أصفر</span></h3>
+        <p class="font-mono text-crimson text-sm md:text-base mt-1">560 EGP</p>
+        <div class="flex gap-1.5 mt-3" data-size-group="8">
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(8,'S',this)">S</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(8,'M',this)">M</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(8,'L',this)">L</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(8,'XL',this)">XL</button>
+        </div>
+        <button onclick="addToCart(8)" class="mt-4 w-full bg-bone text-ink font-body font-bold uppercase text-xs tracking-widest py-2.5 rounded-sm hover:bg-crimson transition-colors"><span data-lang="en">Add to Cart</span><span data-lang="ar">أضف للسلة</span></button>
+      </div>
+    </article>
+
+    <article class="group bg-surface border border-white/10 rounded-md overflow-hidden hover:border-crimson/60 transition-colors" data-product-id="9">
+      <div class="relative aspect-square bg-zinc-700 overflow-hidden">
+        <img src="assets/14-criminal-overshirt-green-worn-front.jpg" alt="Criminal Overshirt, green, worn front" class="absolute inset-0 w-full h-full object-cover object-top group-hover:opacity-0 transition-opacity duration-500">
+        <img src="assets/15-criminal-overshirt-green-back.jpg" alt="Criminal Overshirt, green, back" class="absolute inset-0 w-full h-full object-cover object-top opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+        <span class="absolute top-2 left-2 stamp text-[9px] px-2 py-0.5 bg-ink/70"><span data-lang="en">EVIDENCE 009</span><span data-lang="ar">دليل 009</span></span>
+      </div>
+      <div class="p-3 md:p-5">
+        <h3 class="font-body font-semibold text-sm md:text-base leading-tight"><span data-lang="en">Criminal Overshirt — Green</span><span data-lang="ar">قميص Criminal — أخضر</span></h3>
+        <p class="font-mono text-crimson text-sm md:text-base mt-1">780 EGP</p>
+        <div class="flex gap-1.5 mt-3" data-size-group="9">
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(9,'S',this)">S</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(9,'M',this)">M</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(9,'L',this)">L</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(9,'XL',this)">XL</button>
+        </div>
+        <button onclick="addToCart(9)" class="mt-4 w-full bg-bone text-ink font-body font-bold uppercase text-xs tracking-widest py-2.5 rounded-sm hover:bg-crimson transition-colors"><span data-lang="en">Add to Cart</span><span data-lang="ar">أضف للسلة</span></button>
+      </div>
+    </article>
+
+    <article class="group bg-surface border border-white/10 rounded-md overflow-hidden hover:border-crimson/60 transition-colors" data-product-id="10">
+      <div class="relative aspect-square bg-zinc-300 overflow-hidden">
+        <img src="assets/16-criminal-overshirt-beige-worn.jpg" alt="Criminal Overshirt, beige, worn" class="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+        <span class="absolute top-2 left-2 stamp text-[9px] px-2 py-0.5 bg-ink/70"><span data-lang="en">EVIDENCE 010</span><span data-lang="ar">دليل 010</span></span>
+      </div>
+      <div class="p-3 md:p-5">
+        <h3 class="font-body font-semibold text-sm md:text-base leading-tight"><span data-lang="en">Criminal Overshirt — Beige</span><span data-lang="ar">قميص Criminal — بيج</span></h3>
+        <p class="font-mono text-crimson text-sm md:text-base mt-1">780 EGP</p>
+        <div class="flex gap-1.5 mt-3" data-size-group="10">
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(10,'S',this)">S</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(10,'M',this)">M</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(10,'L',this)">L</button>
+          <button class="size-btn text-[11px] w-8 h-8 rounded border border-white/20 text-zinc-300 hover:border-crimson transition-colors" onclick="selectSize(10,'XL',this)">XL</button>
+        </div>
+        <button onclick="addToCart(10)" class="mt-4 w-full bg-bone text-ink font-body font-bold uppercase text-xs tracking-widest py-2.5 rounded-sm hover:bg-crimson transition-colors"><span data-lang="en">Add to Cart</span><span data-lang="ar">أضف للسلة</span></button>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<div class="tape-strip"></div>
+
+<section class="bg-surface py-14 md:py-20">
+  <div class="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+    <div class="bg-surface2 border border-white/10 rounded-md p-6 text-center">
+      <div class="text-3xl mb-3">🇪🇬</div>
+      <h3 class="font-body font-bold uppercase tracking-wide text-sm mb-2"><span data-lang="en">Express Shipping Across Egypt</span><span data-lang="ar">شحن سريع لكل مصر</span></h3>
+      <p class="text-zinc-400 text-xs leading-relaxed"><span data-lang="en">Cairo, Giza &amp; Alexandria within 48h.</span><span data-lang="ar">القاهرة، الجيزة والإسكندرية خلال 48 ساعة.</span></p>
+    </div>
+    <div class="bg-surface2 border border-white/10 rounded-md p-6 text-center">
+      <div class="text-3xl mb-3">📦</div>
+      <h3 class="font-body font-bold uppercase tracking-wide text-sm mb-2"><span data-lang="en">Cash on Delivery</span><span data-lang="ar">الدفع عند الاستلام</span></h3>
+      <p class="text-zinc-400 text-xs leading-relaxed"><span data-lang="en">Pay at your doorstep. No card needed.</span><span data-lang="ar">ادفع عند استلام الطلب، بدون بطاقة.</span></p>
+    </div>
+    <div class="bg-surface2 border border-white/10 rounded-md p-6 text-center">
+      <div class="text-3xl mb-3">🔄</div>
+      <h3 class="font-body font-bold uppercase tracking-wide text-sm mb-2"><span data-lang="en">Hassle-Free 14-Day Exchanges</span><span data-lang="ar">استبدال سهل خلال 14 يوم</span></h3>
+      <p class="text-zinc-400 text-xs leading-relaxed"><span data-lang="en">Wrong size? Swap it, no questions asked.</span><span data-lang="ar">مقاس غلط؟ استبدله بدون أي أسئلة.</span></p>
+    </div>
+  </div>
+</section>
+
+<section id="lookbook" class="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-24">
+  <p class="font-mono text-crimson text-xs tracking-[0.3em] uppercase mb-2"><span data-lang="en">On the Streets of Cairo</span><span data-lang="ar">في شوارع القاهرة</span></p>
+  <h2 class="font-display text-4xl md:text-6xl uppercase tracking-wide mb-8"><span data-lang="en">Lookbook</span><span data-lang="ar">لوك بوك</span></h2>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+    <div class="aspect-[3/4] rounded-md overflow-hidden border border-white/10 group"><img src="assets/14-criminal-overshirt-green-worn-front.jpg" alt="Criminal Overshirt, green, styled full look" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"></div>
+    <div class="aspect-[3/4] rounded-md overflow-hidden border border-white/10 group"><img src="assets/09-rebellion-graphic-tee-blue-front-print.jpg" alt="Rebellion Graphic Tee, blue, styled" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"></div>
+    <div class="aspect-[3/4] rounded-md overflow-hidden border border-white/10 group"><img src="assets/13-respect-tee-yellow-print-detail.jpg" alt="Respect Tee, yellow, styled" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"></div>
+    <div class="aspect-[3/4] rounded-md overflow-hidden border border-white/10 group"><img src="assets/16-criminal-overshirt-beige-worn.jpg" alt="Criminal Overshirt, beige, styled" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"></div>
+  </div>
+</section>
+
+<div class="tape-strip"></div>
+
+<section id="size-guide" class="max-w-4xl mx-auto px-4 md:px-8 py-16 md:py-24">
+  <p class="font-mono text-crimson text-xs tracking-[0.3em] uppercase mb-2"><span data-lang="en">Know Before You Cop</span><span data-lang="ar">اعرف مقاسك قبل الطلب</span></p>
+  <h2 class="font-display text-4xl md:text-6xl uppercase tracking-wide mb-8"><span data-lang="en">Size Guide</span><span data-lang="ar">جدول المقاسات</span></h2>
+  <div class="overflow-x-auto border border-white/10 rounded-md">
+    <table class="w-full text-sm text-left">
+      <thead class="bg-surface2 text-zinc-300 uppercase text-xs tracking-widest font-mono">
+        <tr><th class="px-4 py-3"><span data-lang="en">Size</span><span data-lang="ar">المقاس</span></th><th class="px-4 py-3"><span data-lang="en">Chest (cm)</span><span data-lang="ar">الصدر (سم)</span></th><th class="px-4 py-3"><span data-lang="en">Length (cm)</span><span data-lang="ar">الطول (سم)</span></th></tr>
+      </thead>
+      <tbody class="divide-y divide-white/10 text-zinc-400">
+        <tr><td class="px-4 py-3 font-semibold text-bone">S</td><td class="px-4 py-3">104</td><td class="px-4 py-3">68</td></tr>
+        <tr><td class="px-4 py-3 font-semibold text-bone">M</td><td class="px-4 py-3">110</td><td class="px-4 py-3">70</td></tr>
+        <tr><td class="px-4 py-3 font-semibold text-bone">L</td><td class="px-4 py-3">116</td><td class="px-4 py-3">72</td></tr>
+        <tr><td class="px-4 py-3 font-semibold text-bone">XL</td><td class="px-4 py-3">122</td><td class="px-4 py-3">74</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer class="bg-surface border-t border-white/10 pb-28 md:pb-10">
+  <div class="max-w-7xl mx-auto px-4 md:px-8 py-12 grid grid-cols-1 md:grid-cols-4 gap-10">
+    <div>
+      <div class="flex items-center gap-2.5 mb-3">
+        <img src="assets/01-criminal-clothing-brand-logo.jpg" alt="Criminal Clothing Brand logo" class="w-9 h-9 rounded-full object-cover border border-white/15">
+        <p class="font-display text-2xl tracking-wide">CRIMI<span class="text-crimson">NAL</span></p>
+      </div>
+      <p class="text-zinc-400 text-sm leading-relaxed"><span data-lang="en">Premium underground streetwear, designed and crafted in Egypt.</span><span data-lang="ar">ملابس ستريت وير فاخرة، تصميم وصناعة مصرية.</span></p>
+    </div>
+    <div>
+      <h4 class="font-body font-bold uppercase text-xs tracking-widest text-zinc-300 mb-4"><span data-lang="en">Shop</span><span data-lang="ar">تسوق</span></h4>
+      <ul class="space-y-2 text-sm text-zinc-400">
+        <li><a href="#drops" class="hover:text-crimson"><span data-lang="en">New Drop</span><span data-lang="ar">الإصدار الجديد</span></a></li>
+        <li><a href="#size-guide" class="hover:text-crimson"><span data-lang="en">Size Chart</span><span data-lang="ar">جدول المقاسات</span></a></li>
+        <li><a href="#lookbook" class="hover:text-crimson"><span data-lang="en">Lookbook</span><span data-lang="ar">لوك بوك</span></a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-body font-bold uppercase text-xs tracking-widest text-zinc-300 mb-4"><span data-lang="en">Contact</span><span data-lang="ar">تواصل معنا</span></h4>
+      <ul class="space-y-2 text-sm text-zinc-400">
+        <li>Cairo, Egypt</li>
+        <li><a href="mailto:hello@criminalclothing.eg" class="hover:text-crimson">hello@criminalclothing.eg</a></li>
+        <li><a href="https://wa.me/201055794184" class="hover:text-crimson" target="_blank" rel="noopener">+20 105 579 4184</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-body font-bold uppercase text-xs tracking-widest text-zinc-300 mb-4"><span data-lang="en">Follow</span><span data-lang="ar">تابعنا</span></h4>
+      <ul class="space-y-2 text-sm text-zinc-400">
+        <li><a href="https://instagram.com/criminal.clothing.eg" target="_blank" rel="noopener" class="hover:text-crimson">Instagram — @criminal.clothing.eg</a></li>
+        <li><a href="https://tiktok.com/@criminal.clothing.eg" target="_blank" rel="noopener" class="hover:text-crimson">TikTok — @criminal.clothing.eg</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10 py-6 text-center text-xs text-zinc-500 font-mono px-4">© Criminal Clothing Brand. <span data-lang="en">Proudly Made in Egypt 🇪🇬</span><span data-lang="ar">صنع بفخر في مصر 🇪🇬</span></div>
+</footer>
+
+<div class="md:hidden fixed bottom-0 inset-x-0 z-30 bg-go px-4 py-3 flex items-center justify-center gap-2 shadow-[0_-4px_16px_rgba(0,0,0,0.4)]">
+  <a href="https://wa.me/201055794184?text=Hi%20Criminal%2C%20I%27d%20like%20to%20order" target="_blank" rel="noopener" class="w-full flex items-center justify-center gap-2 text-ink font-body font-bold uppercase text-sm tracking-wide">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.14c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.11.11-1.79-.11-.41-.13-.94-.31-1.62-.6-2.86-1.24-4.72-4.13-4.87-4.32-.14-.2-1.17-1.56-1.17-2.98s.73-2.11 1-2.4c.24-.27.53-.34.71-.34.18 0 .35 0 .5.01.17.01.38-.06.6.46.24.55.79 1.9.86 2.04.07.14.12.31.02.5-.1.19-.15.31-.29.48-.14.16-.3.36-.43.48-.14.14-.29.29-.13.57.17.28.74 1.22 1.6 1.98 1.1.97 2.02 1.28 2.31 1.42.29.14.46.12.63-.07.17-.2.72-.83.91-1.12.19-.29.38-.24.63-.14.26.1 1.63.77 1.91.91.28.14.46.2.53.32.07.12.07.68-.17 1.32Z"/></svg>
+    <span data-lang="en">Order via WhatsApp in 1-Click</span><span data-lang="ar">اطلب عبر واتساب بضغطة واحدة</span>
+  </a>
+</div>
+
+<div id="cartOverlay" onclick="toggleCart(false)" class="fixed inset-0 bg-black/70 z-40 opacity-0 pointer-events-none"></div>
+
+<aside id="cartDrawer" class="fixed top-0 right-0 h-full w-full sm:w-96 bg-surface border-l border-white/10 z-50 translate-x-full flex flex-col">
+  <div class="flex items-center justify-between px-5 py-5 border-b border-white/10">
+    <h3 class="font-display text-2xl uppercase tracking-wide"><span data-lang="en">Your Cart</span><span data-lang="ar">سلتك</span></h3>
+    <button onclick="toggleCart(false)" aria-label="Close cart" class="text-zinc-400 hover:text-crimson"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+  </div>
+  <div id="cartItems" class="flex-1 overflow-y-auto thin-scroll px-5 py-4 space-y-4">
+    <p id="cartEmptyMsg" class="text-zinc-500 text-sm text-center mt-10"><span data-lang="en">Your cart is empty. Go grab something.</span><span data-lang="ar">سلتك فارغة. روح اختار حاجة.</span></p>
+  </div>
+  <div class="border-t border-white/10 px-5 py-5">
+    <div class="flex items-center justify-between mb-4 font-body">
+      <span class="text-zinc-400 text-sm uppercase tracking-widest"><span data-lang="en">Subtotal</span><span data-lang="ar">الإجمالي</span></span>
+      <span id="cartSubtotal" class="font-mono text-lg text-crimson">0 EGP</span>
+    </div>
+    <a id="cartWhatsappCheckout" href="#" target="_blank" rel="noopener" class="w-full flex items-center justify-center gap-2 bg-go text-ink font-body font-bold uppercase text-sm tracking-wide py-3.5 rounded-sm hover:opacity-90 transition-opacity">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.14c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.11.11-1.79-.11-.41-.13-.94-.31-1.62-.6-2.86-1.24-4.72-4.13-4.87-4.32-.14-.2-1.17-1.56-1.17-2.98s.73-2.11 1-2.4c.24-.27.53-.34.71-.34.18 0 .35 0 .5.01.17.01.38-.06.6.46.24.55.79 1.9.86 2.04.07.14.12.31.02.5-.1.19-.15.31-.29.48-.14.16-.3.36-.43.48-.14.14-.29.29-.13.57.17.28.74 1.22 1.6 1.98 1.1.97 2.02 1.28 2.31 1.42.29.14.46.12.63-.07.17-.2.72-.83.91-1.12.19-.29.38-.24.63-.14.26.1 1.63.77 1.91.91.28.14.46.2.53.32.07.12.07.68-.17 1.32Z"/></svg>
+      <span data-lang="en">Checkout via WhatsApp</span><span data-lang="ar">إتمام الطلب عبر واتساب</span>
+    </a>
+  </div>
+</aside>
+
+<script>
+  const PRODUCTS = {
+    1: { name_en: "Calculated Graphic Tee — Black", name_ar: "تيشيرت Calculated — أسود", price: 550, img: "assets/02-calculated-graphic-tee-black-back-print.jpg" },
+    2: { name_en: "Calculated Graphic Tee — White", name_ar: "تيشيرت Calculated — أبيض", price: 550, img: "assets/04-calculated-graphic-tee-white-back-print.jpg" },
+    3: { name_en: "Calculated Wordmark Tee — White", name_ar: "تيشيرت Calculated Wordmark — أبيض", price: 590, img: "assets/06-calculated-wordmark-tee-white-front-print.jpg" },
+    4: { name_en: "Rebellion Graphic Tee — White", name_ar: "تيشيرت Rebellion — أبيض", price: 580, img: "assets/07-rebellion-graphic-tee-white-front-print.jpg" },
+    5: { name_en: "Rebellion Graphic Tee — Blue", name_ar: "تيشيرت Rebellion — أزرق", price: 580, img: "assets/09-rebellion-graphic-tee-blue-front-print.jpg" },
+    6: { name_en: "Respect Tee — Black", name_ar: "تيشيرت Respect — أسود", price: 560, img: "assets/11-respect-tee-black-print-detail.jpg" },
+    7: { name_en: "Respect Tee — White", name_ar: "تيشيرت Respect — أبيض", price: 560, img: "assets/12-respect-tee-white-print-detail.jpg" },
+    8: { name_en: "Respect Tee — Yellow", name_ar: "تيشيرت Respect — أصفر", price: 560, img: "assets/13-respect-tee-yellow-print-detail.jpg" },
+    9: { name_en: "Criminal Overshirt — Green", name_ar: "قميص Criminal — أخضر", price: 780, img: "assets/14-criminal-overshirt-green-worn-front.jpg" },
+    10:{ name_en: "Criminal Overshirt — Beige", name_ar: "قميص Criminal — بيج", price: 780, img: "assets/16-criminal-overshirt-beige-worn.jpg" }
+  };
+  const selectedSizes = {};
+  let cart = [];
+  let currentLang = "en";
+  function toggleLang() {
+    const html = document.getElementById('htmlRoot');
+    if (currentLang === "en") { currentLang = "ar"; html.setAttribute('lang','ar'); html.setAttribute('dir','rtl'); }
+    else { currentLang = "en"; html.setAttribute('lang','en'); html.setAttribute('dir','ltr'); }
+    renderCart();
+  }
+  function toggleMobileNav() { document.getElementById('mobileNav').classList.toggle('hidden'); }
+  function selectSize(productId, size, btnEl) {
+    selectedSizes[productId] = size;
+    const group = document.querySelector(`[data-size-group="${productId}"]`);
+    group.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+    btnEl.classList.add('selected');
+  }
+  function addToCart(productId) {
+    const size = selectedSizes[productId];
+    if (!size) {
+      const group = document.querySelector(`[data-size-group="${productId}"]`);
+      group.classList.add('animate-pulse');
+      setTimeout(() => group.classList.remove('animate-pulse'), 600);
+      return;
+    }
+    const existing = cart.find(i => i.id === productId && i.size === size);
+    if (existing) { existing.qty += 1; } else { cart.push({ id: productId, size: size, qty: 1 }); }
+    renderCart();
+    toggleCart(true);
+  }
+  function removeFromCart(index) { cart.splice(index, 1); renderCart(); }
+  function changeQty(index, delta) {
+    cart[index].qty += delta;
+    if (cart[index].qty <= 0) { cart.splice(index, 1); }
+    renderCart();
+  }
+  function renderCart() {
+    const container = document.getElementById('cartItems');
+    const emptyMsg = document.getElementById('cartEmptyMsg');
+    const badge = document.getElementById('cartBadge');
+    const subtotalEl = document.getElementById('cartSubtotal');
+    const waCheckout = document.getElementById('cartWhatsappCheckout');
+    container.innerHTML = '';
+    if (cart.length === 0) {
+      container.appendChild(emptyMsg);
+      badge.classList.add('hidden');
+      subtotalEl.textContent = '0 EGP';
+      waCheckout.href = 'https://wa.me/201055794184?text=' + encodeURIComponent('Hi Criminal, I\'d like to order.');
+      return;
+    }
+    let totalQty = 0, subtotal = 0;
+    let waMessage = (currentLang === 'ar' ? 'مرحباً Criminal، أريد أن أطلب:%0A' : 'Hi Criminal, I\'d like to order:%0A');
+    cart.forEach((item, index) => {
+      const product = PRODUCTS[item.id];
+      const name = currentLang === 'ar' ? product.name_ar : product.name_en;
+      const lineTotal = product.price * item.qty;
+      totalQty += item.qty; subtotal += lineTotal;
+      waMessage += encodeURIComponent(`- ${product.name_en} (${item.size}) x${item.qty}`) + '%0A';
+      const row = document.createElement('div');
+      row.className = 'flex gap-3 items-center border-b border-white/10 pb-4';
+      row.innerHTML = `
+        <div class="w-16 h-16 rounded overflow-hidden flex-shrink-0 bg-zinc-900"><img src="${product.img}" alt="${name}" class="w-full h-full object-cover object-top"></div>
+        <div class="flex-1 min-w-0">
+          <p class="font-body text-sm font-semibold truncate">${name}</p>
+          <p class="text-zinc-500 text-xs font-mono mt-0.5">${currentLang === 'ar' ? 'مقاس' : 'Size'}: ${item.size}</p>
+          <div class="flex items-center gap-2 mt-2">
+            <button onclick="changeQty(${index}, -1)" class="w-6 h-6 border border-white/20 rounded text-xs hover:border-crimson">−</button>
+            <span class="font-mono text-xs w-4 text-center">${item.qty}</span>
+            <button onclick="changeQty(${index}, 1)" class="w-6 h-6 border border-white/20 rounded text-xs hover:border-crimson">+</button>
+          </div>
+        </div>
+        <div class="text-right flex-shrink-0">
+          <p class="font-mono text-crimson text-sm">${lineTotal} EGP</p>
+          <button onclick="removeFromCart(${index})" class="text-zinc-500 hover:text-crimson text-xs mt-2">${currentLang === 'ar' ? 'إزالة' : 'Remove'}</button>
+        </div>`;
+      container.appendChild(row);
+    });
+    badge.textContent = totalQty;
+    badge.classList.remove('hidden');
+    subtotalEl.textContent = subtotal + ' EGP';
+    waCheckout.href = `https://wa.me/201055794184?text=${waMessage}%0ATotal: ${subtotal} EGP`;
+  }
+  function toggleCart(open) {
+    const drawer = document.getElementById('cartDrawer');
+    const overlay = document.getElementById('cartOverlay');
+    if (open) { drawer.classList.remove('translate-x-full'); overlay.classList.remove('opacity-0','pointer-events-none'); }
+    else { drawer.classList.add('translate-x-full'); overlay.classList.add('opacity-0','pointer-events-none'); }
+  }
+  renderCart();
+</script>
+</body>
+</html>
